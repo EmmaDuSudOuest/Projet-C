@@ -173,57 +173,43 @@ void MODE_FACILE (char * nameMapFile, int mapX, int mapY, char * nameTankFile,in
 	endGame = 0;
 	while (endGame == 0) {
 		switch (key_pressed()) {
-
 			case 'q' :
 				endGame = 1;
-				AFFICHAGE_MENU(214, 672, "out.txt");
 				break;
-
-				
-			case 'A' :
-
-				if(PX !=1) {
-
-					CLEAR_MYTANK (TY,TX,PX,PY);
-
-					PX --;
-
-					AFFICHE_MYTANK(nameTankFile, TY, (TX-1),(PX),PY);
-
-				}
+			case 'A' : 
+				if(PX !=1) { 
+				if(map[PX-2][PY]==' '){
+				CLEAR_MYTANK (TY, TX,PX,PY);
+				PX --;
+				AFFICHE_MYTANK(nameTankFile, TY, (TX-1),(PX),PY);
+			}
+			}
 				break;
-
 				
 			case 'B' :
-
-				CLEAR_MYTANK (TY,TX,PX,PY);
-
-				PX++;
-
+			if(map[PX+8][PY]==' '){
+			CLEAR_MYTANK (TY, TX,PX,PY);
+			PX++;
 				AFFICHE_MYTANK(nameTankFile, TY, (TX-1),(PX),PY);
+			}
+		
 				break;
-
 			case 'D' :
-
-				CLEAR_MYTANK (TY,TX,PX,PY);
-
-				PY= PY- 2;
-
+			if(map[PX][PY-3]==' '){
+			CLEAR_MYTANK (TY, TX,PX,PY);
+			PY= PY- 2;
 				AFFICHE_MYTANK(nameTankFile, TY, (TX-1),PX,PY);
+			}
+			
+				
 				break;
-
 			case 'C' :
-
-				CLEAR_MYTANK (TY,TX,PX,PY);
-
-				PY= PY+2;
-
-				AFFICHE_MYTANK(nameTankFile, TY, (TX-1),PX,PY);
-				break;
-
-			case 'e' :
-				THROW_BULLET(TY,TX,PX,PY,DIR,map);
-				break;
+			if(map[PX][PY+6]==' '){
+			CLEAR_MYTANK (TY, TX,PX,PY);
+			PY= PY+2;
+			AFFICHE_MYTANK(nameTankFile, TY, (TX-1),PX,PY);
+			break;
+			}
 		}
 	}
 }

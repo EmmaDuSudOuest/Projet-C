@@ -29,7 +29,7 @@ char ** CHARGEMENT_MAP (char * nom_fic, int NB_L, int NB_C) {
 	char c;
 
 	char ** map;
-	s
+	
 
 	map = ALLOCATION_MAT_DYN(NB_L+1,NB_C+1);
 

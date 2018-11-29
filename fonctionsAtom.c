@@ -135,49 +135,90 @@ void MODE_FACILE (char * nameMapFile, int mapX, int mapY, char * nameTankFile,in
 	system("clear");
 	AFFICHAGE_MAT (108, 673,map);
 	tank theTank;
-	//AFFICHE_MYTANK ("tankGauche.txt",9,27,100,100); 
-	INITIALIZE_TANK(map,theTank,PX,PY,TX,TY,nameTankFile);
+	INITIALIZE_TANK(map,theTank,PX,PY,TX,TY,DIR,nameTankFile);
+	obus * listeObus;
+	listeObus = INITIALIZE_LIST_OBUS ();
 	endGame = 0;
+	clock_t start_t, t;
+	start_t = clock();
 	while (endGame == 0) {
 		switch (key_pressed()) {
 			case 'q' :
+				AFFICHAGE_MENU(214, 672, "out.txt");
 				endGame = 1;
 				break;
-			case 'A' : 
-				if(PX !=1) { 
+
+			case 'A' :
+				theTank.Direction = 8;
 				if(map[PX-2][PY]==' '){
-				CLEAR_MYTANK (TY, TX,PX,PY);
-				PX --;
-				AFFICHE_MYTANK(nameTankFile, TY, (TX-1),(PX),PY);
-			}
-			}
+					CLEAR_MYTANK (TY, TX,PX,PY);
+					PX --;
+					AFFICHE_MYTANK(nameTankFile, TY, (TX-1),(PX),PY);
+				}
 				break;
 				
 			case 'B' :
-			if(map[PX+8][PY]==' '){
-			CLEAR_MYTANK (TY, TX,PX,PY);
-			PX++;
-				AFFICHE_MYTANK(nameTankFile, TY, (TX-1),(PX),PY);
-			}
-		
+				theTank.Direction = 2;
+				if(map[PX+8][PY]==' '){
+					CLEAR_MYTANK (TY, TX,PX,PY);
+					PX++;
+					AFFICHE_MYTANK(nameTankFile, TY, (TX-1),(PX),PY);
+				}		
 				break;
 			case 'D' :
-			if(map[PX][PY-3]==' '){
-			CLEAR_MYTANK (TY, TX,PX,PY);
-			PY= PY- 2;
-				AFFICHE_MYTANK(nameTankFile, TY, (TX-1),PX,PY);
-			}
-			
-				
+				theTank.Direction = 4;
+				if(map[PX][PY-3]==' '){
+					CLEAR_MYTANK (TY, TX,PX,PY);
+					PY= PY- 2;
+					AFFICHE_MYTANK(nameTankFile, TY, (TX-1),PX,PY);
+				}
 				break;
 			case 'C' :
-			if(map[PX][PY+6]==' '){
-			CLEAR_MYTANK (TY, TX,PX,PY);
-			PY= PY+2;
-			AFFICHE_MYTANK(nameTankFile, TY, (TX-1),PX,PY);
-			break;
+				theTank.Direction = 6;
+				if(map[PX][PY+6]==' '){
+					CLEAR_MYTANK (TY, TX,PX,PY);
+					PY= PY+2;
+					AFFICHE_MYTANK(nameTankFile, TY, (TX-1),PX,PY);
+				}
+				break;
+
+			case 'e' :
+				;
+				int i=0;
+				while (listeObus[i].Actif==1) {
+					i++;
+				}
+				listeObus[i].Actif=1;
+				listeObus[i].Direction=theTank.Direction;
+				switch (theTank.Direction) {
+
+					case 8 :
+						listeObus[i].PosX=PX;
+						listeObus[i].PosY=PY + TY/2;
+						break;
+					case 2 :
+						listeObus[i].PosX=PX + TX;
+						listeObus[i].PosY=PY + TY/2;
+						break;
+					case 6 :
+						listeObus[i].PosX=PX + TX/2;
+						listeObus[i].PosY=PY + TY;
+						break;
+					case 4 :
+						listeObus[i].PosX=PX + TX/2;
+						listeObus[i].PosY=PY + TY/2;
+						break;
+				}
+					printf("%d",listeObus[i].PosX);
+				
+		}
+		t = clock();
+		for (int i=0;i<50;i++) {
+			if (listeObus[i].Actif==1 && t%50000 == 0) {
+				DEPLACE_OBUS(listeObus[i], map);
 			}
 		}
+	
 	}
 }
 /*
@@ -223,34 +264,108 @@ void INITIALIZE_TANK(char ** map,tank TANK,int PX,int PY, int TX, int TY, char *
 	TANK.TailleY = TY;
 
 }
-/*
-void MOVE_TANK(tank TANK,int DIR, char ** map, int NB_L, int NB_C) {
-	switch (DIR) {
-		case 2 :
-			
-			CLEAR_TANK (map,107,672,TANK);
-			
-			TANK.PosY = 10;
-			INCLUDE_TANK (map,107,672,TANK);
-			break;
-		case 4 :
-			CLEAR_TANK (map,107,672,TANK);
-			(TANK.PosX)--;
-			INCLUDE_TANK (map,107,672,TANK);
-			break;
-		case 6 :
-			CLEAR_TANK (map,107,672,TANK);
-			(TANK.PosX)++;
-			INCLUDE_TANK (map,107,672,TANK);
-			break;
-		case 8 :
-			CLEAR_TANK (map,107,672,TANK);
-			(TANK.PosY)++;
-			INCLUDE_TANK (map,107,672,TANK);
-			break;
-	}
+
+void INITIALIZE_OBUS(obus OBUS, int Actif, int PX,int PY, int DIR) {
+	OBUS.Actif = 0;
+	OBUS.PosX = PX;
+	OBUS.PosY = PY;
+	OBUS.Direction = DIR;
+
+
 }
-*/
+
+obus * INITIALIZE_LIST_OBUS () {
+	obus * listeObus = malloc(50*sizeof(obus));
+	for (int i=0;i<=50;i++) {
+		obus OBUS;
+		INITIALIZE_OBUS(OBUS,0,0,0,8);
+		listeObus[i] = OBUS;
+	}
+	return listeObus;
+}
+
+void DEPLACE_OBUS(obus OBUS, char ** map) {	
+	char c = 'O';
+	if (map[OBUS.PosX-1][OBUS.PosY]==' ') {
+		printf("\033[%d;%dH \n",OBUS.PosX,OBUS.PosY);
+		switch (OBUS.Direction) {
+			case 8 :
+				OBUS.PosX--;
+				break;
+			case 2 :
+				OBUS.PosX++;
+				break;
+			case 6 :
+				OBUS.PosY++;
+				break;
+			case 4 :
+				OBUS.PosY--;
+				break;
+			default:
+				OBUS.PosY--;
+		}
+		printf("\033[%d;%dH%c\n",OBUS.PosX,OBUS.PosY,c);
+	} else OBUS.Actif = 0;
+	
+}
+/*
+void THROW_BULLET(int TailleX, int TailleY,int PosX, int PosY, int Dir, char ** map) {
+	int crushed = 0;
+	char c = 'O';	
+	switch (Dir) {
+		case 8 :
+			x= PosX;
+			y= PosY + TailleY/2;
+			while (crushed==0) {
+				if (map[x-1][y]==' ') {
+					printf("\033[%d;%dH%c\n",x,y,c);
+					usleep(40000);
+					printf("\033[%d;%dH \n",x,y);
+					x--;
+				} else crushed = 1;
+			}
+			break;
+
+		case 2 :
+			x= PosX + TailleX;
+			y= PosY + TailleY/2;
+			while (crushed==0) {
+				if (map[x-1][y]==' ') {
+					printf("\033[%d;%dH%c\n",x,y,c);
+					usleep(40000);
+					printf("\033[%d;%dH \n",x,y);
+					x++;
+				} else crushed = 1;
+			}
+			break;	
+		case 4 :
+			x= PosX + TailleX/2;
+			y= PosY;
+			while (crushed==0) {
+				if (map[x-1][y]==' ') {
+					printf("\033[%d;%dH%c\n",x,y,c);
+					usleep(10000);
+					printf("\033[%d;%dH \n",x,y);
+					y--;
+				} else crushed = 1;
+			}
+			break;	
+		case 6 :
+			x= PosX + TailleX/2;
+			y= PosY + TailleY;
+			while (crushed==0) {
+				if (map[x-1][y]==' ') {
+					printf("\033[%d;%dH%c\n",x,y,c);
+					usleep(10000);
+					printf("\033[%d;%dH \n",x,y);
+					y++;
+				} else crushed = 1;
+			}
+			break;			
+	}
+
+}*/
+
 
 void CLEAR_MYTANK (int NB_L, int NB_C,int PosX, int PosY) {
 	for (int i=0;i<NB_L;i++) {
@@ -259,9 +374,3 @@ void CLEAR_MYTANK (int NB_L, int NB_C,int PosX, int PosY) {
 		}
 	}
 }
-
-
-
-
-
-

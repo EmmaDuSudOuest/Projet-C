@@ -158,7 +158,7 @@ int MENU(int NB_L, int NB_C, char * facile, char * difficile, char * quitter) {
 	}
 }
 
-void MODE_FACILE (char * nameMapFile, int mapX, int mapY, char * nameTankFile,int PX,int PY,int TX,int TY, int DIR) {			
+void MODE_FACILE (char * nameMapFile, int mapX, int mapY, char * nameTankFileA, char * nameTankFileB, char * nameTankFileC,int PX,int PY,int TX,int TY, int DIR) {			
 	char ** map;
 	int endGame;
 	map = CHARGEMENT_MAP(nameMapFile, mapY, mapX);
@@ -182,6 +182,7 @@ void MODE_FACILE (char * nameMapFile, int mapX, int mapY, char * nameTankFile,in
 				break;
 
 			case 'A' :
+				INITIALIZE_TANK(map,theTank,PX,PY,TX,TY,nameTankFileA);
 				theTank.Direction = 8;
 				if(map[PX-2][PY]==' '){
 					CLEAR_MYTANK (TY, TX,PX,PY);
@@ -191,6 +192,7 @@ void MODE_FACILE (char * nameMapFile, int mapX, int mapY, char * nameTankFile,in
 				break;
 				
 			case 'B' :
+				INITIALIZE_TANK(map,theTank,PX,PY,TX,TY,nameTankFileB);
 				theTank.Direction = 2;
 				if(map[PX+8][PY]==' '){
 					CLEAR_MYTANK (TY, TX,PX,PY);
@@ -201,6 +203,7 @@ void MODE_FACILE (char * nameMapFile, int mapX, int mapY, char * nameTankFile,in
 				break;
 
 			case 'D' :
+				INITIALIZE_TANK(map,theTank,PX,PY,TX,TY,nameTankFileA);
 				theTank.Direction = 4;
 				if(map[PX][PY-3]==' '){
 					CLEAR_MYTANK (TY, TX,PX,PY);
@@ -210,6 +213,7 @@ void MODE_FACILE (char * nameMapFile, int mapX, int mapY, char * nameTankFile,in
 				break;
 
 			case 'C' :
+				INITIALIZE_TANK(map,theTank,PX,PY,TX,TY,nameTankFileC);
 				theTank.Direction = 6;
 				if(map[PX][PY+6]==' '){
 					CLEAR_MYTANK (TY, TX,PX,PY);

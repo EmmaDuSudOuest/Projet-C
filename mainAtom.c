@@ -9,7 +9,7 @@ int main (int argc, char * argv[]) {
 	switch (choix) {
 		//mode facile
 		case 0 :
-			MODE_FACILE("map.txt", 672, 107,"tankGauche.txt",20,50,27,9,8);
+			MODE_FACILE("map.txt", 672, 107,"tankGauche.txt","tankDroite.txt","tankHaut",20,50,27,9,8);
 			break;
 		//quitter
 		case 2 :

@@ -1,7 +1,7 @@
 all : COMPIL EXECUTION
 
 
-modeFacileAtom.o : modeFacile.c fonctions.h
+modeFacile.o : modeFacile.c fonctions.h
 	gcc -c -Wall modeFacile.c -std=c99
 
 obusAtom.o : obus.c fonctions.h
@@ -20,8 +20,8 @@ mainAtom.o : main.c fonctions.h
 	gcc -c -Wall main.c -std=c99
 
 
-COMPIL : modeFacileAtom.o mainAtom.o obusAtom.o matricesAtom.o menuAtom.o tankAtom.o
-	gcc -o COMPIL modeFacileAtom.o mainAtom.o obusAtom.o matricesAtom.o menuAtom.o tankAtom.o
+COMPIL : modeFacile.o mainAtom.o obusAtom.o matricesAtom.o menuAtom.o tankAtom.o
+	gcc -o COMPIL modeFacile.o mainAtom.o obusAtom.o matricesAtom.o menuAtom.o tankAtom.o
 
 EXECUTION :
 	./COMPIL

@@ -1,5 +1,5 @@
-#include "librairiesAtom.h"
- #include "fonctionsAtom.h"
+#include "librairies.h"
+ #include "fonctions.h"
  void AFFICHE_MYTANK (char * nom_fic, int NB_L, int NB_C,int PosX, int PosY) {
  	char c;
  	FILE * fic = fopen(nom_fic,"r");

@@ -1,24 +1,23 @@
 all : COMPIL EXECUTION
 
 
-modeFacileAtom.o : modeFacileAtom.c fonctionsAtom.h
-	gcc -c -Wall modeFacileAtom.c -std=c99
+modeFacileAtom.o : modeFacile.c fonctions.h
+	gcc -c -Wall modeFacile.c -std=c99
 
-obusAtom.o : obusAtom.c fonctionsAtom.h
-	gcc -c -Wall obusAtom.c -std=c99
+obusAtom.o : obus.c fonctions.h
+	gcc -c -Wall obus.c -std=c99
 
-matricesAtom.o : matricesAtom.c fonctionsAtom.h
-	gcc -c -Wall matricesAtom.c -std=c99
+matrices.o : matrices.c fonctions.h
+	gcc -c -Wall matrices.c -std=c99
 
-menuAtom.o : menuAtom.c fonctionsAtom.h
-	gcc -c -Wall menuAtom.c -std=c99
+menuAtom.o : menu.c fonctions.h
+	gcc -c -Wall menu.c -std=c99
 
-tankAtom.o : tankAtom.c fonctionsAtom.h
-	gcc -c -Wall tankAtom.c -std=c99
+tankAtom.o : tank.c fonctions.h
+	gcc -c -Wall tank.c -std=c99
 
-
-mainAtom.o : mainAtom.c fonctionsAtom.h
-	gcc -c -Wall mainAtom.c -std=c99
+mainAtom.o : main.c fonctions.h
+	gcc -c -Wall main.c -std=c99
 
 
 COMPIL : modeFacileAtom.o mainAtom.o obusAtom.o matricesAtom.o menuAtom.o tankAtom.o

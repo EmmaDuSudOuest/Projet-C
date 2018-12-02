@@ -1,5 +1,7 @@
 #include "librairies.h"
 #include "fonctions.h"
+
+//Initialise et dirige le jeu, saisie des touches clavier
  void MODE_FACILE (char * nameMapFile, int mapX, int mapY, char * nameTankFile,int PX,int PY,int TX,int TY, int DIR) {			
 	char ** map;
 	int endGame;

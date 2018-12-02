@@ -6,8 +6,6 @@ int MENU(int NB_L, int NB_C, char * facile, char * difficile, char * quitter) {
 	int sortie = 0;	
 	AFFICHAGE_MENU(NB_L*2, NB_C, facile);
 	while (sortie==0) {
-		//if (key_pressed()== '\033') {
-		//key_pressed();
 		switch (key_pressed()) {
 			case 'B' :
 				if (etat==0) {
@@ -30,10 +28,7 @@ int MENU(int NB_L, int NB_C, char * facile, char * difficile, char * quitter) {
 			case '\n' :
 				sortie =1;
 				return etat;				
-		} /*else if (key_pressed()== 'q') {
-				sortie =1;
-				return etat;
-			}*/
+		} 
 	}
 }
 
@@ -45,23 +40,7 @@ void AFFICHAGE_MENU (int NB_L, int NB_C, char * nom_fic) {
 	for (int i=0;i<NB_L;i++) {
              fgets(ligne, NB_C, fic);
 	     int c = printf("%s", ligne);
-	    
-	       /*switch(c){
-			case '6': printf("\e[49m|");
-                                  break;
-                        case '5': printf("\e[31mR \e[0m");
-                                  break;
-                        case '4': printf("\e[31mT\e[0m");
-                                  break;
-			case '3': printf("\e[43mI \e[0m");
-                                  break;
-                        case '2': printf("\e[31mP \e[0m");
-                                  break;
-                        case '1': printf("\e[31mM \e[0m");
-                                  break;
-	       }*/
 	       }
-				//ligne = "";
 }
 
 

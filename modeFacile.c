@@ -56,6 +56,8 @@
 				}
 				break;
  			/*
+			Cette programmation d'obus ne fonctionnant pas, nous avons mis en commentaire la touche de tir
+			
 			case 'e' :
 				;
 				obus newObus;

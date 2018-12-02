@@ -1,5 +1,5 @@
-#include "librairiesAtom.h"
-#include "fonctionsAtom.h"
+#include "librairies.h"
+#include "fonctions.h"
 
 int MENU(int NB_L, int NB_C, char * facile, char * difficile, char * quitter) {
 	int etat = 0;

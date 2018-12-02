@@ -1,17 +1,16 @@
+
+//STRUCTURE DU TANK
 typedef struct {
-
 	int Direction;
-
 	int PosX;
-
 	int PosY;
-
 	int TailleX;
 	int TailleY;
 	int Carrosserie;
-
 }tank;
 
+
+//LISTE CHAINEE -> OBUS
 #ifndef H_LISTE_CHAINEE
 #define H_LISTE_CHAINEE
 
@@ -35,6 +34,7 @@ struct listeObus{
     obus * Premier;
 };
 
+//FONCTIONS OBUS
 listeObus * INITIALIZE_LIST_OBUS ();
 
 void INITIALIZE_OBUS(obus OBUS, int Actif, int PX,int PY, int DIR);
@@ -46,6 +46,8 @@ void DELETE_OBUS(listeObus *liste);
 void DEPLACE_OBUS(obus OBUS, char ** map);
 
 #endif
+
+//FONCTIONS
 
 char ** ALLOCATION_MAT_DYN (int NB_L, int NB_C);
 

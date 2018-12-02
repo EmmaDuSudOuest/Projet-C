@@ -55,6 +55,8 @@ char ** CHARGEMENT_MAP (char * nom_fic, int NB_L, int NB_C);
 
 void CLEAR_MYTANK (int NB_L, int NB_C,int PosX, int PosY);
 
+void INITIALIZE_TANK(char ** map,tank TANK,int PX,int PY, int TX, int TY,int DIR, char * nameFileC);
+
 void AFFICHE_MYTANK (char * nom_fic, int NB_L, int NB_C,int PosX, int PosY);
 
 void AFFICHAGE_MAT(int NB_L, int NB_C, char ** MAT);

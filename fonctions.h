@@ -67,6 +67,6 @@ char key_pressed();
 
 int MENU(int NB_L, int NB_C, char * facile, char * difficile, char * quitter);
 
-void MODE_FACILE (char * nameMapFile, int mapX, int mapY, char * nameTankFile,int PX,int PY, int TX, int TY, int DIR);
+void MODE_FACILE (char * nameMapFile, int mapX, int mapY, char * nameTankFileA, char * nameTankFileB, char * nameTankFileC, char * nameTankFileD,int PX,int PY,int TX,int TY, int DIR);
 
 void MOVE_TANK(tank TANK,int DIR, char ** map, int NB_L, int NB_C);

@@ -1,5 +1,5 @@
-#include "librairiesAtom.h"
-#include "fonctionsAtom.h"
+#include "librairies.h"
+#include "fonctions.h"
 
 
 int main (int argc, char * argv[]) {

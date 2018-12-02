@@ -1,6 +1,8 @@
 #include "librairies.h"
- #include "fonctions.h"
- void AFFICHE_MYTANK (char * nom_fic, int NB_L, int NB_C,int PosX, int PosY) {
+#include "fonctions.h"
+
+//Affiche un tank via sa matrice
+void AFFICHE_MYTANK (char * nom_fic, int NB_L, int NB_C,int PosX, int PosY) {
  	char c;
  	FILE * fic = fopen(nom_fic,"r");
  	for (int i=0;i<NB_L;i++) {
@@ -10,7 +12,9 @@
  		}
  	}
  }
- void INITIALIZE_TANK(char ** map,tank TANK,int PX,int PY, int TX, int TY, int DIR, char * nameFileC) {
+
+//Initialise les valeurs d'un tank
+void INITIALIZE_TANK(char ** map,tank TANK,int PX,int PY, int TX, int TY, int DIR, char * nameFileC) {
 	AFFICHE_MYTANK(nameFileC, TY, (TX-1),PX,PY);
 	TANK.PosX = PX;
 	TANK.PosY = PY;
@@ -18,6 +22,8 @@
 	TANK.TailleY = TY;
 	TANK.Direction = DIR;
  }
+
+//Efface le tank
  void CLEAR_MYTANK (int NB_L, int NB_C,int PosX, int PosY) {
  	for (int i=0;i<NB_L;i++) {
  		for (int j=0;j<NB_C;j++) {

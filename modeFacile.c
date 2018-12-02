@@ -1,5 +1,5 @@
-#include "librairiesAtom.h"
- #include "fonctionsAtom.h"
+#include "librairies.h"
+#include "fonctions.h"
  void MODE_FACILE (char * nameMapFile, int mapX, int mapY, char * nameTankFile,int PX,int PY,int TX,int TY, int DIR) {			
 	char ** map;
 	int endGame;
@@ -8,8 +8,8 @@
  	AFFICHAGE_MAT (108, 673,map);
 	tank theTank;
  	INITIALIZE_TANK(map,theTank,PX,PY,TX,TY,DIR,nameTankFile);
-	obus * listeObus;
-	listeObus = INITIALIZE_LIST_OBUS ();
+	listeObus* listeDesObus;
+	listeDesObus = INITIALIZE_LIST_OBUS ();
 	endGame = 0;
 	clock_t start_t, t;
 	start_t = clock();
@@ -53,43 +53,45 @@
 					AFFICHE_MYTANK(nameTankFile, TY, (TX-1),PX,PY);
 				}
 				break;
- 			case 'e' :
+ 			/*
+			case 'e' :
 				;
-				int i=0;
-				while (listeObus[i].Actif==1) {
-					i++;
-				}
-				listeObus[i].Actif=1;
-				listeObus[i].Direction=theTank.Direction;
+				obus newObus;
+				INITIALIZE_OBUS(newObus, 1, PX,PY, theTank.Direction);
+				INSERT_OBUS(listeDesObus, newObus);
 				switch (theTank.Direction) {
- 					case 8 :
-						listeObus[i].PosX=PX;
-						listeObus[i].PosY=PY + TX/2;
+
+					case 8 :
+						newObus.PosX=PX;
+						newObus.PosY =PY + TX/2;
 						break;
 					case 2 :
-						listeObus[i].PosX=PX + TY;
-						listeObus[i].PosY=PY + TX/2;
+						newObus.PosX=PX + TY;
+						newObus.PosY=PY + TX/2;
 						break;
 					case 6 :
-						listeObus[i].PosX=PX + TY/2;
-						listeObus[i].PosY=PY + TX;
+						newObus.PosX=PX + TY/2;
+						newObus.PosY=PY + TX;
 						break;
 					case 4 :
-						listeObus[i].PosX=PX + TY/2;
-						listeObus[i].PosY=PY;
+						newObus.PosX=PX + TY/2;
+						newObus.PosY=PY;
 						break;
-				}
-					
-				
-		}
-		//t = clock();
-		for (int i=0;i<50;i++) {
-			if (listeObus[i].Actif==1 /*&& t%5000 == 0*/) {
-				DEPLACE_OBUS(listeObus[i], map);
-				printf("numObus: %d",i);
+				}*/
 			}
-		}
-	
+		/*			
+		t = clock();
+		obus *actuel = listeDesObus->Premier;
+		if (t%5000==0) {
+			while (actuel != NULL)
+			{	
+				if (actuel->Actif==1) {
+					DEPLACE_OBUS(*actuel, map);
+				}
+				actuel = actuel->Next;
+			}
+		}*/
+		
 	}
 }
 

@@ -6,11 +6,9 @@ int MENU(int NB_L, int NB_C, char * facile, char * difficile, char * quitter) {
 	int sortie = 0;	
 	AFFICHAGE_MENU(NB_L*2, NB_C, facile);
 	while (sortie==0) {
-usleep(1);
 		//if (key_pressed()== '\033') {
 		//key_pressed();
 		switch (key_pressed()) {
-usleep(3);
 			case 'B' :
 				if (etat==0) {
 					etat=1;

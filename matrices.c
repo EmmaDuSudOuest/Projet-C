@@ -1,6 +1,6 @@
-#include "librairiesAtom.h"
+#include "librairies.h"
 
-#include "fonctionsAtom.h"
+#include "fonctions.h"
 
 
 char ** ALLOCATION_MAT_DYN (int NB_L, int NB_C) {

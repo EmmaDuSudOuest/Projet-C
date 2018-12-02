@@ -1,7 +1,7 @@
 #include "librairies.h"
-
 #include "fonctions.h"
 
+//Initialise la liste chaînée d'obus
 listeObus * INITIALIZE_LIST_OBUS () {
 	listeObus *liste = malloc(sizeof(listeObus));
    	obus *unObus = malloc(sizeof(obus));
@@ -10,11 +10,10 @@ listeObus * INITIALIZE_LIST_OBUS () {
 		unObus->Next = NULL;
 		liste->Premier = unObus;
     	}
-
-
 	return liste;
 }
 
+//Insère un obus en début de liste chaînée
 void INSERT_OBUS(listeObus *liste, obus myObus)
 {
     if (liste != NULL)
@@ -23,7 +22,6 @@ void INSERT_OBUS(listeObus *liste, obus myObus)
     	liste->Premier = &myObus;
     }
 }
-
 
 void DELETE_OBUS(listeObus *liste)
 {
@@ -37,16 +35,16 @@ void DELETE_OBUS(listeObus *liste)
     }
 }
 
+//Initialise un obus
 void INITIALIZE_OBUS(obus OBUS, int estActif, int PX,int PY, int DIR) {
 	OBUS.Actif = estActif;
 	OBUS.PosX = PX;
 	OBUS.PosY = PY;
 	OBUS.Direction = DIR;
-
-
 }
 
 
+//Déplace un obus d'une case en fonction de sa position et de sa direction
 void DEPLACE_OBUS(obus OBUS, char ** map) {	
 	char c = 'O';
 	printf("\033[%d;%dH \n",OBUS.PosX,OBUS.PosY);
